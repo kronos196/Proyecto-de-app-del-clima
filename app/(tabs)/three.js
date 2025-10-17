@@ -4,6 +4,8 @@ import { useCallback, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View, useColorScheme } from 'react-native';
 import MapView, { UrlTile } from 'react-native-maps';
 
+const API_KEY = "2fbe121054b76cc0ae5f37cb61f5a94a";
+
 export default function MapScreen() {
   const [region, setRegion] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -48,7 +50,7 @@ export default function MapScreen() {
     );
   }
 
-  const cloudTileUrl = `https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=${process.env.EXPO_PUBLIC_OPENWEATHER_API_KEY}`;
+  const cloudTileUrl = `https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=${API_KEY}`;
 
   return (
     <View style={styles.container}>

@@ -16,6 +16,8 @@ import {
   View,
 } from "react-native";
 
+const API_KEY = "2fbe121054b76cc0ae5f37cb61f5a94a";
+
 export default function WeatherScreen() {
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
@@ -78,7 +80,7 @@ export default function WeatherScreen() {
     setError(null);
     try {
       // Primero obtenemos las coordenadas de la ciudad
-      const geoResponse = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${process.env.EXPO_PUBLIC_OPENWEATHER_API_KEY}`);
+      const geoResponse = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`);
       const geoData = await geoResponse.json();
       if (!geoData || geoData.length === 0) {
         throw new Error("Ciudad no encontrada");
@@ -96,8 +98,8 @@ export default function WeatherScreen() {
     setError(null);
     try {
       const [weatherResponse, forecastResponse] = await Promise.all([
-        fetch(`https://api.openweathermap.org/data/2.5/weather?${locationQuery}&appid=${process.env.EXPO_PUBLIC_OPENWEATHER_API_KEY}&units=${units}&lang=es`),
-        fetch(`https://api.openweathermap.org/data/2.5/forecast?${locationQuery}&appid=${process.env.EXPO_PUBLIC_OPENWEATHER_API_KEY}&units=${units}&lang=es`),
+        fetch(`https://api.openweathermap.org/data/2.5/weather?${locationQuery}&appid=${API_KEY}&units=${units}&lang=es`),
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?${locationQuery}&appid=${API_KEY}&units=${units}&lang=es`),
       ]);
 
       const weatherData = await weatherResponse.json();
